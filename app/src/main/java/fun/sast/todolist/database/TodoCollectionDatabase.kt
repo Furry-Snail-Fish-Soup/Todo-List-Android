@@ -1,31 +1,29 @@
 package `fun`.sast.todolist.database
 
-import `fun`.sast.todolist.dao.TodoItemDao
-import `fun`.sast.todolist.model.TodoItem
+import `fun`.sast.todolist.dao.TodoCollectionDao
+import `fun`.sast.todolist.model.TodoCollection
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [TodoItem::class], version = 1)
-abstract class TodoItemDatabase : RoomDatabase() {
+@Database(entities = [TodoCollection::class], version = 1)
+abstract class TodoCollectionDatabase : RoomDatabase() {
 
-    abstract fun TodoItemDao(): TodoItemDao
+    abstract fun TodoCollectionDao(): TodoCollectionDao
 
     companion object {
-        // Singleton prevents multiple instances of database opening at the
-        // same time.
         @Volatile
-        private var INSTANCE: TodoItemDatabase? = null
+        private var INSTANCE: TodoCollectionDatabase? = null
 
-        fun getDatabase(context: Context): TodoItemDatabase {
+        fun getDatabase(context: Context): TodoCollectionDatabase {
             // if the INSTANCE is not null, then return it,
             // if it is, then create the database
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
-                    TodoItemDatabase::class.java,
-                    "todo_item_database"
+                    TodoCollectionDatabase::class.java,
+                    "todo_collection_database"
                 ).build()
                 INSTANCE = instance
                 // return instance

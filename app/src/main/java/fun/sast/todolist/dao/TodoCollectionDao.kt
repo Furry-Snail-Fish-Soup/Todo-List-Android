@@ -5,7 +5,7 @@ import `fun`.sast.todolist.model.TodoCollection
 import androidx.room.*
 
 @Dao
-interface CollectionDao {
+interface TodoCollectionDao {
     /**
      * Get all TodoCollection's.
      * The list is sorted by the collection's id in descending order.
@@ -28,7 +28,7 @@ interface CollectionDao {
      * @return the rowId of the collection.
      */
     @Insert(onConflict = OnConflictStrategy.ABORT)
-    suspend fun insertCollection(collection: CollectionWithItems): Long
+    suspend fun insertCollection(todoCollection: TodoCollection): Long
 
     /**
      * Delete a TodoCollection from the database.
@@ -36,7 +36,7 @@ interface CollectionDao {
      * @return the number of rows affected.
      */
     @Delete
-    suspend fun deleteCollection(collection: TodoCollection): Int
+    suspend fun deleteCollection(collection: TodoCollection): Long
 
     /**
      * Update a TodoCollection in the database.
@@ -44,5 +44,5 @@ interface CollectionDao {
      * @return the number of rows affected.
      */
     @Update
-    suspend fun updateCollection(collection: TodoCollection): Int
+    suspend fun updateCollection(collection: TodoCollection): Long
 }

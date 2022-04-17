@@ -2,6 +2,7 @@ package `fun`.sast.todolist.dao
 
 import `fun`.sast.todolist.model.TodoItem
 import androidx.room.*
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface TodoItemDao {
@@ -12,7 +13,7 @@ interface TodoItemDao {
      * @return all TodoItem's.
      */
     @Query("SELECT * FROM TodoItem ORDER BY isImportant DESC, isCompleted DESC, id DESC")
-    suspend fun getAllItems(): List<TodoItem>
+    suspend fun getAll(): Flow<List<TodoItem>>
 
     /**
      * Insert a todoItem in the database. If the todoItem already exists, abort.
