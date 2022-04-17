@@ -20,7 +20,7 @@ interface TodoItemDao {
      * @return the rowId of the inserted todoItem.
      */
     @Insert(onConflict = OnConflictStrategy.ABORT)
-    suspend fun insertItem(item: TodoItem): Long
+    suspend fun insert(item: TodoItem): Long
 
     /**
      * Delete a TodoItem from the database.
@@ -28,7 +28,7 @@ interface TodoItemDao {
      * @return the number of deleted TodoItem's.
      */
     @Delete
-    suspend fun deleteItem(item: TodoItem): Int
+    suspend fun delete(item: TodoItem): Int
 
     /**
      * Update a TodoItem in the database.
@@ -36,6 +36,6 @@ interface TodoItemDao {
      * @return the number of updated TodoItem's.
      */
     @Update
-    suspend fun updateItem(item: TodoItem): Int
+    suspend fun update(item: TodoItem): Int
 
 }
