@@ -1,11 +1,21 @@
 package `fun`.sast.todolist.model
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import kotlinx.datetime.LocalDateTime
 
+@Entity
 data class TodoItem(
-    val id: Int, val title: String, val content: String,
-    val isCompleted: Boolean, val idBell: Boolean, val bellTime: LocalDateTime,
-    val period: Period, val tableId: Int, val IsImportant: Boolean
+    @PrimaryKey(autoGenerate = true)
+    val id: Int,
+    val title: String,
+    val content: String,
+    val isCompleted: Boolean,
+    val isAlarmEnabled: Boolean,
+    val firstAlarmTime: LocalDateTime?,
+    val alarmPeriod: AlarmPeriod,
+    val listId: Int,
+    val isImportant: Boolean
 ) {
-    enum class Period { No, Day, Weekday, Week, Month, Year }
+    enum class AlarmPeriod { Once, Day, Weekday, Week, Month, Year }
 }

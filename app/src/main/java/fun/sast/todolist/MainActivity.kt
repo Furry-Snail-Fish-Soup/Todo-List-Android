@@ -22,14 +22,14 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MainUI()
+            Drawer()
         }
     }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun MainUI() {
+private fun Drawer() {
     TodoListTheme {
         ModalNavigationDrawer(
             drawerContent = {
@@ -51,14 +51,14 @@ private fun MainUI() {
                     icon = { Icon(Icons.TwoTone.Alarm, "All") })
             },
             drawerShape = Shapes.large
-        ) { MainPart() }
+        ) { MainUI() }
     }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 @Preview
-private fun MainPart() {
+private fun MainUI() {
     Scaffold(
         topBar = { TopBar() },
         bottomBar = { BottomBar() },
@@ -76,13 +76,6 @@ private fun MainPart() {
             }
         }
     }
-}
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-@Preview(widthDp = 297)
-private fun Drawer() {
-
 }
 
 @Composable
@@ -109,16 +102,12 @@ private fun BottomBar() {
         NavigationBarItem(
             selected = true,
             icon = { Icon(Icons.TwoTone.List, "List") },
-            label = { Text(text = "总览") },
-            onClick = { /*TODO*/ })
+            label = { Text("列表") },
+            onClick = { })
         NavigationBarItem(
             selected = false,
             icon = { Icon(Icons.TwoTone.Tag, "List") },
-            label = {
-                Text(
-                    text = "标签"
-                )
-            },
+            label = { Text("标签") },
             onClick = { /*TODO*/ })
         NavigationBarItem(
             selected = false,
