@@ -26,7 +26,7 @@ class TodoItemRepository(private val TodoItemDao: TodoItemDao) {
 
     @Suppress("RedundantSuspendModifier")
     @WorkerThread
-    suspend fun getAll(): Flow<List<TodoItem>> {
+    suspend fun getAll(): MutableList<List<TodoItem>> {
         return TodoItemDao.getAll()
     }
 }

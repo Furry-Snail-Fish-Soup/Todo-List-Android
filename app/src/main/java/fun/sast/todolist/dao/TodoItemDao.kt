@@ -13,7 +13,7 @@ interface TodoItemDao {
      * @return all TodoItem's.
      */
     @Query("SELECT * FROM TodoItem ORDER BY isImportant DESC, isCompleted DESC, id DESC")
-    suspend fun getAll(): Flow<List<TodoItem>>
+    suspend fun getAll(): MutableList<List<TodoItem>>
 
     /**
      * Insert a todoItem in the database. If the todoItem already exists, abort.
