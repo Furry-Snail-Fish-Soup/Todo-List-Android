@@ -7,11 +7,12 @@ import androidx.room.*
 interface TodoItemDao {
 
     /**
-     * Get all TodoItem's.
+     * Get all TodoItem's. The list is sorted first by importance and then by the isCompleted status,
+     * and then by the creation date.
      * @return all TodoItem's.
      */
     @Query("SELECT * FROM TodoItem ORDER BY isImportant DESC, isCompleted DESC, id DESC")
-    fun getAllItems(): List<TodoItem>
+    suspend fun getAllItems(): List<TodoItem>
 
     /**
      * Insert a todoItem in the database. If the todoItem already exists, abort.
@@ -19,7 +20,7 @@ interface TodoItemDao {
      * @return the rowId of the inserted todoItem.
      */
     @Insert(onConflict = OnConflictStrategy.ABORT)
-    fun insertItem(item: TodoItem): Long
+    suspend fun insertItem(item: TodoItem): Long
 
     /**
      * Delete a TodoItem from the database.
@@ -27,7 +28,7 @@ interface TodoItemDao {
      * @return the number of deleted TodoItem's.
      */
     @Delete
-    fun deleteItem(item: TodoItem): Int
+    suspend fun deleteItem(item: TodoItem): Int
 
     /**
      * Update a TodoItem in the database.
@@ -35,6 +36,6 @@ interface TodoItemDao {
      * @return the number of updated TodoItem's.
      */
     @Update
-    fun updateItem(item: TodoItem): Int
+    suspend fun updateItem(item: TodoItem): Int
 
 }

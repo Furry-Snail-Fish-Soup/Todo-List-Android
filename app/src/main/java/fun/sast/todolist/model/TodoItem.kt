@@ -14,7 +14,7 @@ data class TodoItem(
     val isAlarmEnabled: Boolean,
     val firstAlarmTime: LocalDateTime?,
     val alarmPeriod: AlarmPeriod,
-    val listId: Int,
+    val collectionId: Int,
     val isImportant: Boolean
 ) {
     enum class AlarmPeriod { Once, Day, Weekday, Week, Month, Year }

@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 @Entity
 data class TodoCollection(
     @PrimaryKey(autoGenerate = true)
-    val listId: Int,
+    val id: Int,
     val title: String,
     val color: ListColor
 ) {
