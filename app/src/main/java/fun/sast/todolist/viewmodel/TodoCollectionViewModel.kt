@@ -1,10 +1,29 @@
 package `fun`.sast.todolist.viewmodel
 
+import `fun`.sast.todolist.model.TodoCollection
 import `fun`.sast.todolist.repository.TodoCollectionRepository
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.launch
 
 class TodoCollectionViewModel(private val repository: TodoCollectionRepository) : ViewModel() {
+
+    fun insert(todoCollection: TodoCollection) = viewModelScope.launch {
+        repository.insert(todoCollection)
+    }
+
+    fun update(todoCollection: TodoCollection) = viewModelScope.launch {
+        repository.update(todoCollection)
+    }
+
+    fun delete(todoCollection: TodoCollection) = viewModelScope.launch {
+        repository.delete(todoCollection)
+    }
+
+    fun getAll() = viewModelScope.launch {
+        repository.getAll()
+    }
 
 }
 

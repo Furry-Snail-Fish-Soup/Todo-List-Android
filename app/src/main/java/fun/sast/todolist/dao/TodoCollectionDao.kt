@@ -3,6 +3,7 @@ package `fun`.sast.todolist.dao
 import `fun`.sast.todolist.model.CollectionWithItems
 import `fun`.sast.todolist.model.TodoCollection
 import androidx.room.*
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface TodoCollectionDao {
@@ -20,7 +21,7 @@ interface TodoCollectionDao {
      * @return all TodoCollection's.
      */
     @Query("SELECT * FROM TodoCollection ORDER BY id DESC")
-    suspend fun getAllCollectionsWithItems(): List<CollectionWithItems>
+    suspend fun getAll(): Flow<List<CollectionWithItems>>
 
     /**
      * Insert a TodoCollection into the database. If the collection already exists, abort.
@@ -28,7 +29,7 @@ interface TodoCollectionDao {
      * @return the rowId of the collection.
      */
     @Insert(onConflict = OnConflictStrategy.ABORT)
-    suspend fun insertCollection(todoCollection: TodoCollection): Long
+    suspend fun insert(todoCollection: TodoCollection): Long
 
     /**
      * Delete a TodoCollection from the database.
@@ -36,7 +37,7 @@ interface TodoCollectionDao {
      * @return the number of rows affected.
      */
     @Delete
-    suspend fun deleteCollection(collection: TodoCollection): Long
+    suspend fun delete(collection: TodoCollection): Int
 
     /**
      * Update a TodoCollection in the database.
@@ -44,5 +45,5 @@ interface TodoCollectionDao {
      * @return the number of rows affected.
      */
     @Update
-    suspend fun updateCollection(collection: TodoCollection): Long
+    suspend fun update(collection: TodoCollection): Int
 }
