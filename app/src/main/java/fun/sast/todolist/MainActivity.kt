@@ -70,11 +70,11 @@ private fun Drawer() {
 @Preview
 private fun MainUI(onMenuButtonClick: () -> Unit = {}) {
     Scaffold(
-        topBar = { TopBar() },
+        topBar = { TopBar(onMenuButtonClick) },
         bottomBar = { BottomBar() },
         floatingActionButton = {
             FloatingActionButton(
-                onClick = { onMenuButtonClick() },
+                onClick = { },
                 shape = RoundedCornerShape(16.dp)
             ) { Icon(Icons.TwoTone.Add, "新建待办") }
         }) {
@@ -99,10 +99,10 @@ private fun MainUI(onMenuButtonClick: () -> Unit = {}) {
 
 @Composable
 @Preview
-private fun TopBar() {
+private fun TopBar(onMenuButtonClick: () -> Unit = {}) {
     CenterAlignedTopAppBar(
         navigationIcon = {
-            IconButton(onClick = { /*TODO*/ }) {
+            IconButton(onClick = { onMenuButtonClick() }) {
                 Icon(Icons.TwoTone.Menu, "菜单")
             }
         },
