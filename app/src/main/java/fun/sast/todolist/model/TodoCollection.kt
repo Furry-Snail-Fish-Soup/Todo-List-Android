@@ -4,7 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity
-data class TodoList(
+data class TodoCollection(
     @PrimaryKey(autoGenerate = true)
     val listId: Int,
     val title: String,
