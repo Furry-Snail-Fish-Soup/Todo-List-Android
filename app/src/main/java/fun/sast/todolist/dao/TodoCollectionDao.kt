@@ -13,15 +13,20 @@ interface TodoCollectionDao {
      * @return all TodoCollection's.
      */
     @Query("SELECT * FROM TodoCollection ORDER BY id DESC")
-    suspend fun getAllCollections(): List<TodoCollection>
+    suspend fun getAllCollections(): Flow<List<TodoCollection>>
 
     /**
      * Get all TodoCollection's with their corresponding items.
      * The list is sorted by the collection's id in descending order.
      * @return all TodoCollection's.
      */
+    @Transaction
     @Query("SELECT * FROM TodoCollection ORDER BY id DESC")
     suspend fun getAll(): Flow<List<CollectionWithItems>>
+
+    @Transaction
+    @Query("SELECT Count(*) FROM TodoCollection where title = :title")
+    suspend fun getNum(title: String): Int
 
     /**
      * Insert a TodoCollection into the database. If the collection already exists, abort.

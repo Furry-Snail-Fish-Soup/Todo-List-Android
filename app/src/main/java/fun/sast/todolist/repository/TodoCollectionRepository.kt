@@ -28,8 +28,19 @@ class TodoCollectionRepository(private val todoCollectionDao: TodoCollectionDao)
 
     @Suppress("RedundantSuspendModifier")
     @WorkerThread
-    suspend fun getAll(): Flow<List<CollectionWithItems>> {
-        return todoCollectionDao.getAll()
+    suspend fun getAllCollections(): Flow<List<TodoCollection>> {
+        return todoCollectionDao.getAllCollections()
     }
 
+    @Suppress("RedundantSuspendModifier")
+    @WorkerThread
+    suspend fun getAll(): Flow<List<CollectionWithItems>> {
+        return todoCollectionDao.getAll();
+    }
+
+    @Suppress("RedundantSuspendModifier")
+    @WorkerThread
+    suspend fun getNum(title: String): Int {
+        return todoCollectionDao.getNum(title);
+    }
 }

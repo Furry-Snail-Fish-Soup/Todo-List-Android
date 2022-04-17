@@ -21,10 +21,17 @@ class TodoCollectionViewModel(private val repository: TodoCollectionRepository) 
         repository.delete(todoCollection)
     }
 
+    fun getAllCollections() = viewModelScope.launch {
+        repository.getAllCollections()
+    }
+
     fun getAll() = viewModelScope.launch {
         repository.getAll()
     }
 
+    fun getNum(title: String) = viewModelScope.launch {
+        repository.getNum(title)
+    }
 }
 
 class TodoCollectionRepositoryFactory(private val repository: TodoCollectionRepository) : ViewModelProvider.Factory {
