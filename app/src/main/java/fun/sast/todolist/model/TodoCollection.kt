@@ -8,9 +8,9 @@ data class TodoCollection(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
     val title: String,
-    val color: ListColor
+    val icon: Icon
 ) {
-    enum class ListColor {
-        Red, Green, Blue, Yellow, Purple, Orange
+    enum class Icon {
+        Work, Study, Home, Other
     }
 }
