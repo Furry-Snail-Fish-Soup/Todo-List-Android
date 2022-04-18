@@ -7,8 +7,8 @@ import androidx.room.PrimaryKey
 data class Tag(
     @PrimaryKey
     val id: Int,
-    val title: String,
-    val icon: TagIcon
+    var title: String,
+    var icon: TagIcon
 ) {
     enum class TagIcon {
         Home, Work, School, Shopping, Sport, Study, Travel, Other

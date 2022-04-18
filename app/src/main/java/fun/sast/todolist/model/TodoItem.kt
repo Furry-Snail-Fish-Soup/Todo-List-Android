@@ -8,14 +8,14 @@ import kotlinx.datetime.LocalDateTime
 data class TodoItem(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
-    val title: String,
-    val content: String,
-    val isCompleted: Boolean,
-    val isAlarmEnabled: Boolean,
-    val firstAlarmTime: LocalDateTime?,
-    val alarmPeriod: AlarmPeriod,
-    val collectionId: Int,
-    val isImportant: Boolean
+    var title: String,
+    var content: String,
+    var isCompleted: Boolean,
+    var isAlarmEnabled: Boolean,
+    var firstAlarmTime: LocalDateTime?,
+    var alarmPeriod: AlarmPeriod,
+    var collectionId: Int,
+    var isImportant: Boolean
 ) {
     enum class AlarmPeriod { Once, Day, Weekday, Week, Month, Year }
 }

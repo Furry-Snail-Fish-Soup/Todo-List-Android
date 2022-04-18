@@ -7,8 +7,8 @@ import androidx.room.PrimaryKey
 data class TodoCollection(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
-    val title: String,
-    val icon: Icon
+    var title: String,
+    var icon: Icon
 ) {
     enum class Icon {
         Work, Study, Home, Other
