@@ -1,6 +1,8 @@
-package `fun`.sast.todolist.ui
+@file:Suppress("OPT_IN_IS_NOT_ENABLED")
 
-import `fun`.sast.todolist.model.TodoItem
+package `fun`.sast.nothingtodo.ui
+
+import `fun`.sast.nothingtodo.model.TodoItem
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -19,7 +21,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 @Preview
@@ -29,12 +30,7 @@ fun MainUI(onMenuButtonClick: () -> Unit = {}) {
             TodoItem(
                 1,
                 "点击右下角新建待办",
-                "",
                 isCompleted = false,
-                isAlarmEnabled = false,
-                firstAlarmTime = null,
-                alarmPeriod = TodoItem.AlarmPeriod.Once,
-                collectionId = 1,
                 isImportant = false
             )
         )
@@ -44,12 +40,11 @@ fun MainUI(onMenuButtonClick: () -> Unit = {}) {
 //        bottomBar = { BottomBar() },
         floatingActionButton = {
             FloatingActionButton(
-                onClick = { /*TODO Navigate to EditActivity*/ },
+                onClick = { /* TODO Navigate to Edit page */ },
                 shape = RoundedCornerShape(16.dp)
             ) { Icon(Icons.TwoTone.Add, "新建待办") }
         }) {
         LazyColumn {
-
             items(
                 // TODO hoist this to ViewModel
                 items
@@ -123,7 +118,7 @@ fun TodoItemView(
                     IconButton(onClick = { setImportant(!todoItem.isImportant) }) {
                         Icon(
                             imageVector = if (todoItem.isImportant) Icons.Filled.PushPin else Icons.Outlined.PushPin,
-                            contentDescription = "Important"
+                            contentDescription = "重要"
                         )
                     }
                 }

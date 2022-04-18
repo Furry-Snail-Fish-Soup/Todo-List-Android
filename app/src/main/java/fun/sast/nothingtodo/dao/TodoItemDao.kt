@@ -1,6 +1,6 @@
-package `fun`.sast.todolist.dao
+package `fun`.sast.nothingtodo.dao
 
-import `fun`.sast.todolist.model.TodoItem
+import `fun`.sast.nothingtodo.model.TodoItem
 import androidx.room.*
 import kotlinx.coroutines.flow.Flow
 
@@ -8,12 +8,30 @@ import kotlinx.coroutines.flow.Flow
 interface TodoItemDao {
 
     /**
-     * Get all TodoItem's. The list is sorted first by importance and then by the isCompleted status,
+     * Get all TodoItem's. The list is sorted first by isImportant status,
+     * and then by the isCompleted status,
      * and then by the creation date.
      * @return all TodoItem's.
      */
-    @Query("SELECT * FROM TodoItem ORDER BY isImportant DESC, isCompleted DESC, id DESC")
+    @Query(
+        "SELECT * FROM TodoItem " +
+                "ORDER BY isImportant DESC, isCompleted DESC, id DESC"
+    )
     suspend fun getAll(): Flow<List<TodoItem>>
+
+    /**
+     * Get all TodoItem's in the specified TodoCollection.
+     * The list is sorted first by isImportant status,
+     * and then by the isCompleted status,
+     * and then by the creation date.
+     * @return all TodoItem's.
+     */
+    @Query(
+        "SELECT * FROM TodoItem " +
+                "WHERE collectionId = :collectionId " +
+                "ORDER BY isImportant DESC, isCompleted DESC, id DESC"
+    )
+    suspend fun getCollection(collectionId: Int): Flow<List<TodoItem>>
 
     /**
      * Insert a todoItem in the database. If the todoItem already exists, abort.

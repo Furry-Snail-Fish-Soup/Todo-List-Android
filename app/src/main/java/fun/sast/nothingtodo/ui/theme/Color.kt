@@ -1,4 +1,4 @@
-package `fun`.sast.todolist.ui.theme
+package `fun`.sast.nothingtodo.ui.theme
 import androidx.compose.ui.graphics.Color
 
 

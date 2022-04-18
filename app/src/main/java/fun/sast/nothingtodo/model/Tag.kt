@@ -1,4 +1,4 @@
-package `fun`.sast.todolist.model
+package `fun`.sast.nothingtodo.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

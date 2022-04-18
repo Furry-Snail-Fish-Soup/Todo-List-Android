@@ -1,7 +1,7 @@
-package `fun`.sast.todolist.dao
+package `fun`.sast.nothingtodo.dao
 
-import `fun`.sast.todolist.model.CollectionWithItems
-import `fun`.sast.todolist.model.TodoCollection
+import `fun`.sast.nothingtodo.model.CollectionWithItems
+import `fun`.sast.nothingtodo.model.TodoCollection
 import androidx.room.*
 import kotlinx.coroutines.flow.Flow
 

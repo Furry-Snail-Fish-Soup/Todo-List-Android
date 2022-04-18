@@ -1,7 +1,10 @@
-package `fun`.sast.todolist
+@file:Suppress("OPT_IN_IS_NOT_ENABLED")
 
-import `fun`.sast.todolist.ui.MainUI
-import `fun`.sast.todolist.ui.theme.TodoListTheme
+package `fun`.sast.nothingtodo
+
+import `fun`.sast.nothingtodo.model.TodoCollection
+import `fun`.sast.nothingtodo.ui.MainUI
+import `fun`.sast.nothingtodo.ui.theme.TodoListTheme
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -11,11 +14,15 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.twotone.*
+import androidx.compose.material.icons.twotone.AllInclusive
+import androidx.compose.material.icons.twotone.FactCheck
+import androidx.compose.material.icons.twotone.Task
+import androidx.compose.material.icons.twotone.Unarchive
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
 
@@ -48,14 +55,26 @@ private fun Drawer() {
                             .padding(16.dp)
                     )
                 }
-                DrawerItem("全部", { /*TODO*/ }, { Icon(Icons.TwoTone.AllInclusive, "All") })
-                DrawerItem("未完成", { /*TODO*/ }, { Icon(Icons.TwoTone.Unarchive, "Incomplete") })
-                DrawerItem("已完成", { /*TODO*/ }, { Icon(Icons.TwoTone.Task, "Completed") })
+                DrawerItem(
+                    "全部",
+                    onClick = { /*TODO*/ },
+                    icon = Icons.TwoTone.AllInclusive
+                )
+                DrawerItem("未完成", onClick = { /*TODO*/ }, icon = Icons.TwoTone.Unarchive)
+                DrawerItem("已完成", onClick = { /*TODO*/ }, icon = Icons.TwoTone.Task)
                 Divider(modifier = Modifier.padding(16.dp))
                 // TODO LazyColumn
                 LazyColumn {
-                    items(listOf("工作", "要买的东西", "学习")) {
-                        DrawerItem(it, { /*TODO*/ }, { Icon(Icons.TwoTone.CalendarToday, "All") })
+                    items(
+                        listOf(/*"工作", "要买的东西", "学习"*/
+                            TodoCollection(
+                                id = 1,
+                                title = "1",
+                                icon = TodoCollection.Icon.Work
+                            )
+                        )
+                    ) { collection ->
+                        DrawerItem(collection.title, { /*TODO*/ }, collection.icon.icon)
                     }
                 }
 
@@ -70,12 +89,12 @@ private fun Drawer() {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun DrawerItem(label: String, onClick: () -> Unit, icon: @Composable() (() -> Unit)) {
+private fun DrawerItem(label: String, onClick: () -> Unit, icon: ImageVector) {
     NavigationDrawerItem(
         label = { Text(label) },
         selected = false,
         onClick = onClick,
-        icon = icon,
+        icon = { Icon(icon, null) },
         modifier = Modifier.padding(vertical = 4.dp)
     )
 }

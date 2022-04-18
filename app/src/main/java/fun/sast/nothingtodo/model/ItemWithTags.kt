@@ -1,4 +1,4 @@
-package `fun`.sast.todolist.model
+package `fun`.sast.nothingtodo.model
 
 import androidx.room.Embedded
 import androidx.room.Junction

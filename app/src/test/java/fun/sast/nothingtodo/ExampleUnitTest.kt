@@ -1,4 +1,4 @@
-package `fun`.sast.todolist
+package `fun`.sast.nothingtodo
 
 import org.junit.Test
 
